@@ -10,8 +10,19 @@ object MyApp extends App {
     x + y
   }
 
+  def mult(x: Int, y: Int): Int = {
+    x * y
+  }
 
+  def substract(x: Int, y: Int): Int = {
+    x - y
+  }
 
+  def divide(x: Int, y: Int): Int = {
+    x / y
+  }
+
+  def operate(x: Int, y:Int)(f: (Int, Int) => Int) = f(x,y)
 
 
 
@@ -19,16 +30,6 @@ object MyApp extends App {
     if (n <= 0) 1
     else n * factorial(n - 1)
   }
-
-
-
-
-
-
-
-
-
-
   def factorial(n: Int): Int = {
 
     @annotation.tailrec

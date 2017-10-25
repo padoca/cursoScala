@@ -10,6 +10,19 @@ object MyApp extends App {
     x + y
   }
 
+  def mult(x: Int, y: Int): Int = {
+    x * y
+  }
+
+  def substract(x: Int, y: Int): Int = {
+    x - y
+  }
+
+  def divide(x: Int, y: Int): Int = {
+    x / y
+  }
+
+  def operate(x: Int, y:Int)(f: (Int, Int) => Int) = f(x,y)
 
 
 
@@ -41,6 +54,37 @@ object MyApp extends App {
     rec (1, n)
   }
 
+  def operate[A,B] (x: A, y:A)(f: (A, A) => B) = f(x,y)
+
+  def max(list: List[Int]): Int = {
+
+    @annotation.tailrec
+    def go (current: Int, rest: List[Int]): Int = {
+      rest match {
+        case Nil => current
+        case h::t => if (h > current) go(h, t) else go(current, t)
+      }
+    }
+
+    go (Int.MinValue, list)
+  }
+
+  //Cojo el segundo elemento de una lista
+  def second(list: List[Int]) : Option[Int] = {
+    list match {
+      case h::h2::t => Some(h2)
+      case _ => None
+    }
+  }
+
+  //Cojo el n elemento de una lista
+  def nth(list: List[Int], n: Int): Option[Int] = {
+    list match {
+      case h::t if n == 0 => Some(h)
+      case h::t if n > 0 => nth(t, n-1)
+      case _ => None
+    }
+  }
 
 }
 
