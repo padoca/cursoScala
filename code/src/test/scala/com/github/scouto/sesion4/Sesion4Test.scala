@@ -1,14 +1,14 @@
 /**
   * Created by scouto.
   */
-package com.github.scouto.sesion3
+package com.github.scouto.sesion4
 
 import org.scalatest.{FlatSpec, Matchers}
 
 /**
   * Created by scouto.
   */
-class Sesion3Test extends FlatSpec with Matchers{
+class Sesion4Test extends FlatSpec with Matchers{
   val manjarin = new Alumno("Javier", "Manjarin")
   val claudio  = new Alumno(nombre = "Claudio", apellidos = "Barragan")
   val alfredo   = new Alumno(apellidos = "Santaelena", nombre = "Alfredo")

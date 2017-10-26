@@ -38,15 +38,15 @@ object Sesion3 extends App{
 
 
   //Forma generica (A, B y C son tipos genericos)
-  def uncurry[A,B,C](f: A => B => C): (A, B) => C = {
+  def uncurryGen[A,B,C](f: A => B => C): (A, B) => C = {
     (a, b) => f(a)(b)
   }
 
-  def curry[A,B,C](f: (A, B) => C): A => B => C = {
+  def curryGen[A,B,C](f: (A, B) => C): A => B => C = {
     a => b => f(a,b)
   }
   //Pasa de A a C pasando por B(EN el original de Int a String pasando por Int)
-  def composicion[A,B,C](f: B => C, g: A => B): A  => C = {
+  def composicionGen[A,B,C](f: B => C, g: A => B): A  => C = {
     a => f(g(a))
   }
 
