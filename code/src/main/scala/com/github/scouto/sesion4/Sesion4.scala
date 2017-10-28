@@ -16,7 +16,7 @@ object Sesion4 extends App{
   }
 
   def fb(x: Int): BigInt = {
-    if (x<0) throw Exception
+    if (x<0) throw new ArithmeticException("debe ser mayo dre 0")
     x match {
       case 0 => 0
       case 1 => 1
