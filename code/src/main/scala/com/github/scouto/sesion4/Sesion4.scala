@@ -1,6 +1,6 @@
 package com.github.scouto.sesion4
 
-object Sesion3 extends App{
+object Sesion4 extends App{
   //Quita el primer elemento que cumpla con una funcion pasada
   def removeFirstElement(list: List[Int], f: Int =>Boolean): List[Int] = {
      go(List(),list)
@@ -14,5 +14,17 @@ object Sesion3 extends App{
       }
     }
   }
+
+  def fb(x: Int): BigInt = {
+    if (x<0) throw Exception
+    x match {
+      case 0 => 0
+      case 1 => 1
+      case _ => fb(x-1) + fb(x-2)
+    }
+  }
+
+  //def msort[T](l: List[T], less(T, T) => Boolean):List[T] = {  }
+  //def isSorted[A](as: List[A])(implicit ordered: (A,A) => Boolean): Boolean = {  }
 }
 

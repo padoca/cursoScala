@@ -4,6 +4,7 @@
 package com.github.scouto.sesion4
 
 import org.scalatest.{FlatSpec, Matchers}
+import com.github.scouto.sesion4.Sesion4._
 
 /**
   * Created by scouto.
@@ -51,6 +52,11 @@ class Sesion4Test extends FlatSpec with Matchers{
 
     result.right.get.relacionAlumnos(asignatura).size should be (2)
     result.right.get.relacionAlumnos should be (Map(asignatura -> List(claudio, alfredo)))
+  }
+
+  "fb" should "be 1 for any integer below 0" in {
+    fb(-5) should be (1)
+    fb(8) should be (21)
   }
 }
 
