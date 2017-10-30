@@ -1,10 +1,10 @@
-package com.github.scouto
+package com.github.scouto.sesion2
 
 /**
   * Created by scouto.
   */
 
-import Sesion2._
+import com.github.scouto.sesion2.Sesion2._
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks

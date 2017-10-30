@@ -25,6 +25,13 @@ object Sesion4 extends App{
   }
 
   //def msort[T](l: List[T], less(T, T) => Boolean):List[T] = {  }
+  def msort[T]( xs: List[T])(implicit less: (T, T) => Boolean): List[T] = {
+
+  }
+
   //def isSorted[A](as: List[A])(implicit ordered: (A,A) => Boolean): Boolean = {  }
+  def isSorted[A](as: List[A])(implicit ordered: (A,A) => Boolean): Boolean = {
+
+  }
 }
 
