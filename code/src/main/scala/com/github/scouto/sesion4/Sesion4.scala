@@ -3,7 +3,6 @@ package com.github.scouto.sesion4
 object Sesion4 extends App{
   //Quita el primer elemento que cumpla con una funcion pasada
   def removeFirstElement(list: List[Int], f: Int =>Boolean): List[Int] = {
-     go(List(),list)
 
     @annotation.tailrec
     def go(acc: List[Int], rest: List[Int]): List[Int] = {
@@ -20,6 +19,7 @@ object Sesion4 extends App{
         case h::t if !f(h) => go(acc :+ h, t) //si no cumple paso el elemento al acumulado
       }
     }*/
+    go(List[Int](),list)
   }
 
   def fb(x: Int): BigInt = {
@@ -35,9 +35,9 @@ object Sesion4 extends App{
     @annotation.tailrec
     def accsort (acc: List[T], pending: List[T]): List[T] ={
       pending match {
-        case h::Nil => acc
-        case h::t if less(h, t.head) && !isSorted(t.tail) => accsort(acc:::List(h):::List(t.head), t.tail)
-        case h::t if less(h, t.head) && isSorted(t.tail) => acc:::pending
+        case h::Nil => acc:::List(h)
+        case h::t if less(h, t.head) && !isSorted(t.tail)(less) => accsort(acc:::List(h):::List(t.head), t.tail)
+        case h::t if less(h, t.head) && isSorted(t.tail)(less) => acc:::pending
         case h::t if !less(h, t.head) => accsort(acc:::List(t.head):::List(h), t.tail)
         case _ => acc
 

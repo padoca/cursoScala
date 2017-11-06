@@ -43,7 +43,6 @@ class AdministracionTrait  (val relacionAlumnos: Map[AsignaturaTrait, List[Alumn
   }
 
   def removeFirstElement(list: List[AlumnoTrait], f: AlumnoTrait =>Boolean): List[AlumnoTrait] = {
-    go(List(),list)
 
     @annotation.tailrec
     def go(acc: List[AlumnoTrait], rest: List[AlumnoTrait]): List[AlumnoTrait] = {
@@ -53,6 +52,8 @@ class AdministracionTrait  (val relacionAlumnos: Map[AsignaturaTrait, List[Alumn
         case h::t if !f(h) => go(acc :+ h, t) //si no cumple paso el elemento al acumulado
       }
     }
+
+    go(List(),list)
   }
 
 }
