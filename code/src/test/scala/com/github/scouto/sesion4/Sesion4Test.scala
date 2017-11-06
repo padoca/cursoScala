@@ -55,7 +55,8 @@ class Sesion4Test extends FlatSpec with Matchers{
   }
 
   "fb" should "be 1 for any integer below 0" in {
-    fb(-5) should be (1)
+    //an [IndexOutOfBoundsException] should be thrownBy s.charAt(-1)
+    an [ArithmeticException] should be thrownBy fb(-5)
     fb(8) should be (21)
   }
 }
