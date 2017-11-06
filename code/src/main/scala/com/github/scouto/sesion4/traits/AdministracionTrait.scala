@@ -37,7 +37,7 @@ class AdministracionTrait  (val relacionAlumnos: Map[AsignaturaTrait, List[Alumn
       case Nil => Some(new AdministracionTrait(relacionAlumnos + (asignatura -> List(alumno))))
       case l if l.contains(alumno) => None
       case l if l.size < asignatura.plazas => Some(new AdministracionTrait(relacionAlumnos + (asignatura -> (alumno :: l))))
-      case l if l.size == asignatura.plazas => Some(new AdministracionTrait(relacionAlumnos + (asignatura -> (alumno :: removeFirstElement(l, a=>a.repetidor)))))
+      case l if l.size == asignatura.plazas && l.exists(_.repetidor) => Some(new AdministracionTrait(relacionAlumnos + (asignatura -> (alumno :: removeFirstElement(l, a=>a.repetidor)))))
       case _ => None
     }
   }
