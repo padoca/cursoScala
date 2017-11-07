@@ -25,7 +25,7 @@ object Lista {
   def product(ints: Lista[Double]) : Double = {
     ints match {
       case Vacio => 1.0
-      case Cons (h, t) => h * product(t)
+      case Cons (h, t) =>  h * product(t)
     }
   }
 
