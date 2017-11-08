@@ -16,7 +16,7 @@ object Sesion5 extends App{
     def loop (rest: List[A]): Boolean = {
       rest match {
         case Nil => true
-        case h::Nil => true
+        case _::Nil => true
         case h1::t if ordered(h1, t.head) => loop (t)
         case h1::t if !ordered(h1, t.head) => false
       }

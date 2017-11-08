@@ -4,7 +4,6 @@ import com.github.scouto.sesion5.{Lista, Vacio}
 import com.github.scouto.sesion5.Lista._
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{FlatSpec, Matchers}
-import com.github.scouto.sesion6.Sesion6._
 
 /**
   * Created by scouto.
@@ -32,12 +31,12 @@ class ListaSesion6Test extends FlatSpec with Matchers with PropertyChecks{
 
   "length" should "be 0 for empty lists" in {
     val l = Lista()
-    assert(Sesion6.length(l) == 0)
+    assert(Lista.length(l) == 0)
   }
 
   it should "be the actual length for bigger lists" in {
-    assert(Sesion6.length(Lista(1, 2, 5, 1)) == 4)
-    assert(Sesion6.length(Lista(6)) == 1)
+    assert(Lista.length(Lista(1, 2, 5, 1)) == 4)
+    assert(Lista.length(Lista(6)) == 1)
   }
 
   "sumFoldLeft" should "work the same as sum" in {
@@ -63,9 +62,9 @@ class ListaSesion6Test extends FlatSpec with Matchers with PropertyChecks{
 
   "lengthFoldLeft" should "be the same as length" in {
     val l = Lista()
-    assert(lengthFoldLeft(l) == Sesion6.length(l))
-    assert(lengthFoldLeft(Lista(1, 2, 5, 1)) == Sesion6.length(Lista(1, 2, 5, 1)))
-    assert(lengthFoldLeft(Lista(6)) == Sesion6.length(Lista(6)))
+    assert(lengthFoldLeft(l) == Lista.length(l))
+    assert(lengthFoldLeft(Lista(1, 2, 5, 1)) == Lista.length(Lista(1, 2, 5, 1)))
+    assert(lengthFoldLeft(Lista(6)) == Lista.length(Lista(6)))
   }
 
   "reverse" should "be the list itself for empty lists or one-element lists" in {
@@ -122,20 +121,41 @@ class ListaSesion6Test extends FlatSpec with Matchers with PropertyChecks{
     productFoldLeftRight(Lista(16, -20)) should be ( product(Lista(16, -20)))
   }
 
+  "sumFoldRightLeft" should "work the same as sum" in {
+
+    sumFoldRightLeft(Lista()) should be (sum(Lista()))
+    sumFoldRightLeft(Vacio) should be (sum(Vacio))
+    sumFoldRightLeft(Lista(1,2)) should be (sum(Lista(1,2)))
+    sumFoldRightLeft(Lista(-1,2)) should be (sum(Lista(-1,2)))
+    sumFoldRightLeft(Lista(16)) should be (sum(Lista(16)))
+    sumFoldRightLeft(Lista(16, -20)) should be ( sum(Lista(16, -20)))
+  }
+
+
+  "sumFoldLeftRight" should "work the same as sum" in {
+
+    sumFoldLeftRight(Lista()) should be (sum(Lista()))
+    sumFoldLeftRight(Vacio) should be (sum(Vacio))
+    sumFoldLeftRight(Lista(1,2)) should be (sum(Lista(1,2)))
+    sumFoldLeftRight(Lista(-1,2)) should be (sum(Lista(-1,2)))
+    sumFoldLeftRight(Lista(16)) should be (sum(Lista(16)))
+    sumFoldLeftRight(Lista(16, -20)) should be ( sum(Lista(16, -20)))
+  }
+
 
   "lengthLeftRight" should "be the same as length" in {
     val l = Lista()
-    assert(lengthLeftRight(l) == Sesion6.length(l))
-    assert(lengthLeftRight(Lista(1, 2, 5, 1)) == Sesion6.length(Lista(1, 2, 5, 1)))
-    assert(lengthLeftRight(Lista(6)) == Sesion6.length(Lista(6)))
+    assert(lengthLeftRight(l) == Lista.length(l))
+    assert(lengthLeftRight(Lista(1, 2, 5, 1)) == Lista.length(Lista(1, 2, 5, 1)))
+    assert(lengthLeftRight(Lista(6)) == Lista.length(Lista(6)))
   }
 
 
   "lengthRightLeft" should "be the same as length" in {
     val l = Lista()
-    assert(lengthRightLeft(l) == Sesion6.length(l))
-    assert(lengthRightLeft(Lista(1, 2, 5, 1)) == Sesion6.length(Lista(1, 2, 5, 1)))
-    assert(lengthRightLeft(Lista(6)) == Sesion6.length(Lista(6)))
+    assert(lengthRightLeft(l) == Lista.length(l))
+    assert(lengthRightLeft(Lista(1, 2, 5, 1)) == Lista.length(Lista(1, 2, 5, 1)))
+    assert(lengthRightLeft(Lista(6)) == Lista.length(Lista(6)))
   }
 
 
@@ -144,7 +164,7 @@ class ListaSesion6Test extends FlatSpec with Matchers with PropertyChecks{
     assert(appendLists(l) == Vacio)
   }
 
-  "appendLists" should "ne a plain list" in {
+  it should "return a plain list" in {
     val l1 = Lista(Lista(1))
     val l2 = Lista(Lista(1,2,3), Lista(4), Lista(5,6,7))
     assert(appendLists(l1) == Lista(1))

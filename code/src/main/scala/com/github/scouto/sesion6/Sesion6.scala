@@ -38,20 +38,23 @@ object Sesion6 extends App {
 
   def sumFoldLeft(ints: Lista[Int]): Int = {
     foldLeft(ints, 0) ((a, b)=> a + b)
-    //foldLeft(ints, 1.0) (_+_)
+    //foldLeft(ints, 0) (_+_)
   }
 
   def productFoldLeft(ints: Lista[Double]) : Double = {
     foldLeft(ints, 1.0) ((a, b)=> a * b)
+    //foldLeft(ints, 1.0) (_*_)
   }
 
   def lengthFoldLeft[A](as: Lista[A]): Int = {
     foldLeft(as, 0) ((acc, elem)=> acc+1)
+    //foldLeft(as, 0)((acc, _) => acc +1)
   }
 
   def reverse[A](as: Lista[A]): Lista [A] = {
-    foldRight(as,Lista[A]()) ((elem, acc)=> Lista.append(acc,Lista(elem)))
-    foldLeft(as,Lista[A]()) ((acc, elem)=> Lista.append(Lista(elem),acc))
+    //Todas son formas de hacerlo:
+    //foldRight(as,Lista[A]()) ((elem, acc)=> Lista.append(acc,Lista(elem)))
+    //foldLeft(as,Lista[A]()) ((acc, elem)=> Lista.append(Lista(elem),acc))
     foldLeft(as,Lista[A]()) ((acc, elem)=> Cons(elem,acc))
   }
 
@@ -61,6 +64,14 @@ object Sesion6 extends App {
 
   def foldLeftbyRight[A,B](as: Lista[A], z: B) (f: (B, A) => B) : B = {
     foldRight(as,z) ((elem, acc)=> f(acc, elem))
+  }
+
+  def sumFoldRightLeft(ints: Lista[Int]) : Int = {
+    foldRightbyLeft(ints, 0)(_ +_ )
+  }
+
+  def sumFoldLeftRight(ints: Lista[Int]) : Int = {
+    foldLeftbyRight(ints, 0)(_ +_ )
   }
 
   def productFoldRightLeft(ints: Lista[Double]) : Double = {
@@ -85,6 +96,7 @@ object Sesion6 extends App {
 
   def appendLists[A](as: Lista[Lista[A]]): Lista[A] = {
     //foldRight(as,Lista[A]()) ((elem, acc)=> appendFoldRight(elem,acc))
-    foldRight(as,Lista[A]()) (appendFoldRight) //Currificaion de lo de arriba
+    //foldRight(as, Vacio: Lista[A])(appendFoldRight(_, _))
+    foldRight(as, Vacio: Lista[A]) (appendFoldRight) //Currificaion de lo de arriba
   }
 }
