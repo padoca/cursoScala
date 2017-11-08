@@ -2,6 +2,7 @@ package com.github.scouto.sesion6
 
 import com.github.scouto.sesion5.{Lista, Vacio}
 import com.github.scouto.sesion5.Lista._
+import com.github.scouto.sesion6.Sesion6._
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{FlatSpec, Matchers}
 
@@ -31,12 +32,12 @@ class ListaSesion6Test extends FlatSpec with Matchers with PropertyChecks{
 
   "length" should "be 0 for empty lists" in {
     val l = Lista()
-    assert(Lista.length(l) == 0)
+    assert(Sesion6.length(l) == 0)
   }
 
   it should "be the actual length for bigger lists" in {
-    assert(Lista.length(Lista(1, 2, 5, 1)) == 4)
-    assert(Lista.length(Lista(6)) == 1)
+    assert(Sesion6.length(Lista(1, 2, 5, 1)) == 4)
+    assert(Sesion6.length(Lista(6)) == 1)
   }
 
   "sumFoldLeft" should "work the same as sum" in {
@@ -62,9 +63,9 @@ class ListaSesion6Test extends FlatSpec with Matchers with PropertyChecks{
 
   "lengthFoldLeft" should "be the same as length" in {
     val l = Lista()
-    assert(lengthFoldLeft(l) == Lista.length(l))
-    assert(lengthFoldLeft(Lista(1, 2, 5, 1)) == Lista.length(Lista(1, 2, 5, 1)))
-    assert(lengthFoldLeft(Lista(6)) == Lista.length(Lista(6)))
+    assert(lengthFoldLeft(l) == Sesion6.length(l))
+    assert(lengthFoldLeft(Lista(1, 2, 5, 1)) == Sesion6.length(Lista(1, 2, 5, 1)))
+    assert(lengthFoldLeft(Lista(6)) == Sesion6.length(Lista(6)))
   }
 
   "reverse" should "be the list itself for empty lists or one-element lists" in {
@@ -145,17 +146,17 @@ class ListaSesion6Test extends FlatSpec with Matchers with PropertyChecks{
 
   "lengthLeftRight" should "be the same as length" in {
     val l = Lista()
-    assert(lengthLeftRight(l) == Lista.length(l))
-    assert(lengthLeftRight(Lista(1, 2, 5, 1)) == Lista.length(Lista(1, 2, 5, 1)))
-    assert(lengthLeftRight(Lista(6)) == Lista.length(Lista(6)))
+    assert(lengthLeftRight(l) == Sesion6.length(l))
+    assert(lengthLeftRight(Lista(1, 2, 5, 1)) == Sesion6.length(Lista(1, 2, 5, 1)))
+    assert(lengthLeftRight(Lista(6)) == Sesion6.length(Lista(6)))
   }
 
 
   "lengthRightLeft" should "be the same as length" in {
     val l = Lista()
-    assert(lengthRightLeft(l) == Lista.length(l))
-    assert(lengthRightLeft(Lista(1, 2, 5, 1)) == Lista.length(Lista(1, 2, 5, 1)))
-    assert(lengthRightLeft(Lista(6)) == Lista.length(Lista(6)))
+    assert(lengthRightLeft(l) == Sesion6.length(l))
+    assert(lengthRightLeft(Lista(1, 2, 5, 1)) == Sesion6.length(Lista(1, 2, 5, 1)))
+    assert(lengthRightLeft(Lista(6)) == Sesion6.length(Lista(6)))
   }
 
 

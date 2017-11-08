@@ -3,7 +3,7 @@ package com.github.scouto.sesion6
 /**
   * Created by scouto.
   */
-object Sesion6 extends App {
+object Sesion6Couto extends App {
 
   def something() = {
     println("calling something")
