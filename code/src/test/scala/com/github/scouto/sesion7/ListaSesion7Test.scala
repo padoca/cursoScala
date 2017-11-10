@@ -1,7 +1,7 @@
 package com.github.scouto.sesion7
 
 import com.github.scouto.sesion5.{Lista, Vacio}
-import com.github.scouto.sesion5.Lista._
+import com.github.scouto.sesion7.Sesion7._
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{FlatSpec, Matchers}
 
@@ -74,6 +74,18 @@ class ListaSesion7Test extends FlatSpec with Matchers with PropertyChecks{
     assert(filterFlatMap(l)(_ % 2 == 0) == filter(l)(_ % 2 == 0))
   }
 
+   "addLists" should "do this" in {
+    val l1 = Lista(1, 3, 6, 7, 10)
+    val l2 = Lista(1, 2, 3, 4, 5)
+    assert(addLists(l1, l2) == Lista(2, 5, 9, 11, 15))
+    }
+
+  "zipWith" should "do this" in {
+    val l1 = Lista(1, 3, 6, 7, 10)
+    val l2 = Lista(1, 2, 3, 4, 5)
+    assert(addLists(l1, l2) == zipWith(l1, l2)((a, b) => a+b))
+    assert(Lista(0, 1, 3, 3, 5) == zipWith(l1, l2)((a, b) => a - b))
+  }
 
 
   }
