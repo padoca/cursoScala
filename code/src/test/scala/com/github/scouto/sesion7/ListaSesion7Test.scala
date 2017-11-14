@@ -87,6 +87,29 @@ class ListaSesion7Test extends FlatSpec with Matchers with PropertyChecks{
     assert(Lista(0, 1, 3, 3, 5) == zipWith(l1, l2)((a, b) => a - b))
   }
 
+  "startWith" should "do this" in {
+    val l1 = Lista(1, 2,3, 4)
+    assert(empiezaPor(l1, Lista(1)))
+    assert(empiezaPor(l1, Lista(1, 2)))
+    assert(!empiezaPor(l1, Lista(2)))
+    assert(!empiezaPor(l1, Lista(2, 3)))
+    assert(!empiezaPor(l1, Lista(4)))
+    assert(empiezaPor(l1, Vacio))
+    assert(empiezaPor(Vacio, Vacio))
+    assert(!empiezaPor(Vacio, Lista(1)))
+  }
+
+  "hasSubsequence" should "do this" in {
+    val l1 = Lista(1, 2,3, 4)
+    assert(tieneSubsecuencia(l1, Lista(1)))
+    assert(tieneSubsecuencia(l1, Lista(1, 2)))
+    assert(tieneSubsecuencia(l1, Lista(2)))
+    assert(tieneSubsecuencia(l1, Lista(2, 3)))
+    assert(tieneSubsecuencia(l1, Lista(4)))
+    assert(tieneSubsecuencia(l1, Vacio))
+    assert(tieneSubsecuencia(Vacio, Vacio))
+    assert(!tieneSubsecuencia(Vacio, Lista(1)))
+  }
 
   }
 

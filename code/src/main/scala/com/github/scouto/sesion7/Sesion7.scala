@@ -72,5 +72,21 @@ object Sesion7 {
       loop(Vacio, l1, l2)
   }
 
-  /*def tieneSubsecuencia[A](lista: Lista[A], sub: Lista[A]): Boolean = ???*/
+  def empiezaPor[A](lista: Lista[A], sub: Lista[A]): Boolean = {
+    (lista, sub) match {
+      case (Vacio, Vacio) => true
+      case (Vacio, _) => false
+      case (_, Vacio) => true
+      case (Cons(h1, t1), Cons(h2, t2)) => h1 == h2 && empiezaPor(t1,t2)
+    }
+  }
+
+  def tieneSubsecuencia[A](lista: Lista[A], sub: Lista[A]): Boolean = {
+    (lista, sub) match {
+      case (Vacio, Vacio) => true
+      case (Vacio, _) => false
+      case (_, Vacio) => true
+      case (Cons(h1, t1), Cons(h2, t2)) => if(h1 == h2) empiezaPor(t1,t2) else tieneSubsecuencia(t1, sub)
+    }
+  }
 }
