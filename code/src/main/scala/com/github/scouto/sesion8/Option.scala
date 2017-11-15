@@ -73,11 +73,18 @@ object Option {
     }
   }
 
-  def sequence[A](a: List[Option[A]]): Option[List[A]] = ???
+  def sequence[A](a: List[Option[A]]): Option[List[A]] = {
+    a.foldRight(Some(Nil): Option[List[A]])((elem,acc)=>map2(elem, acc)((a, b)=>a::b))
+    //a.foldRight(Some(Nil): Option[List[A]])((elem,acc)=>map2(elem, acc)(_::_))
+  }
 
-  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = ???
+  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = {
+    a.foldRight(Some(Nil): Option[List[B]])((elem,acc)=>map2(f(elem), acc)(_::_))
+  }
 
-  def sequenceViaTraverse[A](a: List[Option[A]]): Option[List[A]] = ???
+  def sequenceViaTraverse[A](a: List[Option[A]]): Option[List[A]] = {
+    traverse(a)(a=>a)
+  }
 
   def variance(xs: Seq[Double]): Option[Double] = ???
 
