@@ -5,7 +5,7 @@ package com.github.scouto.sesion9
   */
 object Weekday extends Enumeration {
 
-  val Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo = Value
+  //val Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo = Value
 
   val Monday = Value("Lunes")
   val Tuesday = Value("Martes")
@@ -19,8 +19,23 @@ object Weekday extends Enumeration {
 
 object MyApp extends App{
 
-  def laborable(weekday: Weekday.Value): Boolean = ???
+  def laborable(weekday: Weekday.Value): Boolean = {
+    weekday match {
+      case Weekday.Monday => false
+      case Weekday.Tuesday => false
+      case Weekday.Wednesday => false
+      case Weekday.Thursday  => false
+      case Weekday.Friday => false
+      case Weekday.Saturday => true
+      case Weekday.Sunday => true
+    }
+//    weekday.id match {
+//      case a => if(a<6)false else true
+//    }
+  }
 
+  //println(Weekday.values.toList.sorted)//Ordenado por id
+  println(Weekday.values.toList.sortBy(a=>a.toString))//Ordenado por nombre
 
 }
 
