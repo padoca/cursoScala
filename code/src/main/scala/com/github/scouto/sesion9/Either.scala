@@ -11,32 +11,39 @@ sealed trait Either[+E, +A] {
 
   def map[B](f: A => B): Either[E, B] = {
     this match {
-      case Left(a) => Left(a)
-      case Right(a) => Right(f(a))
+      case Left(error) => Left(error)
+      case Right(v) => Right(f(v))
     }
   }
 
   def flatMap [EE >: E, B >: A](f: A => Either[EE, B]): Either[EE, B] = {
     this match {
-      case Left(a) => Left(a)
-      case Right(a) => f(a)
+      case Left(error) => Left(error)
+      case Right(v) => f(v)
     }
+
+//    map(f) match {
+//      case Left(error) => Left(error)
+//      case Right(v) => v
+//    }
+
   }
 
-  def orElse [EE >: E, B >: A](b: => Either[EE, B]): Either[EE, B] = {
+  def orElse [EE >: E, B >: A](defaultValue: => Either[EE, B]): Either[EE, B] = {
     this match {
-      case Left(a) => b
-      case Right(a) => Right(a)
+      case Left(_) => defaultValue
+      case Right(_) => this
     }
   }
 
   def map2[EE >: E, B, C](b: Either[EE, B])(f: (A, B) => C) : Either[EE, C] = {
     (this, b) match {
-      case (Right(a),Left(b)) => Left(b)
-      case (Left(a), Left(b)) => Left(a)//Cualquier error vale, es mas, nos podemos ahorrar este case con el _ en los otros
-      case (Left(a), Right(b)) => Left(a)
-      case (Right(a), Right(b)) => Right(f(a,b))
+      case (Right(v1), Right(v2)) => Right(f(v1, v2))
+      case (Left(error), _) => Left(error)
+      case (_, Left(error)) => Left(error)
     }
+
+
   }
 
 }
@@ -48,36 +55,44 @@ object Either {
 
 
   def mean(xs:Seq[Double]): Either[String, Double] = {
-    if(xs.isEmpty) Left("Empty Seq")
-    else Right(xs.sum / xs.length)
+    if (xs.isEmpty) Left("Empty Seq")
+    else Right(xs.sum/ xs.length)
+  }
+
+
+  def calcularCuotaString(age: String, incidencias: String) : Either[String, Double] = {
+
+
+    def convertToEither(v: String): Either[String, Int] = {
+    Try(v.toInt) match {
+      case Failure(e) => Left(e.getMessage)
+      case Success(v) => Right(v)
+    }
+    }
+//    convertToEither(age).map2(convertToEither(incidencias))((a,b) => calcularCuota(a,b))
+//    convertToEither(age).map2(convertToEither(incidencias))(calcularCuota)
+
+    val eitherAge = convertToEither(age)
+    val eitherInc = convertToEither(incidencias)
+
+    eitherAge.map2(eitherInc)(calcularCuota)
   }
 
   def calcularCuota(age: Int, incidencias: Int): Double = {
     age * incidencias
   }
 
-  def calcularCuotaString(age: String, incidencias: String): Either[String, Double] = {
-
-    def convertToEither(x:String): Either[String, Int] = {
-      Try{x.toInt} match {
-        case Failure(a) => Left(a.getMessage)
-        case Success(a) => Right(a)
-      }
-    }
-
-    convertToEither(age).map2(convertToEither(incidencias))(calcularCuota) // (a,b)=>calcularCuota(a,b)
-  }
-
 
   def sequence[E, A](a: List[Either[E, A]]): Either[E, List[A]] = {
-    a.foldRight(Right(Nil): Either[E, List[A]])((elem,acc)=>elem.map2(acc)(_::_))
+    a.foldRight(Right(Nil): Either[E,List[A]])((elem, acc) => elem.map2(acc)(_::_))
   }
 
   def traverse[E, A, B](a: List[A])(f: A => Either[E, B]): Either[E, List[B]] = {
-    a.foldRight(Right(Nil): Either[E, List[B]])((elem,acc)=>f(elem).map2(acc)(_::_))
+    a.foldRight(Right(Nil): Either[E,List[B]])((elem, acc) => f(elem).map2(acc)(_::_))
   }
 
   def sequenceViaTraverse[E, A](a: List[Either[E, A]]): Either[E, List[A]] = {
-    traverse(a)(a=>a)
+    traverse(a)(x => x)
   }
+
 }

@@ -50,4 +50,37 @@ object Sesion8 extends App{
 
 
 
+
+  val lista = List("My", "taylor", "is","really", "rich", "and", "you", "are", "not")
+  val listaDeListas = List(List("My"), List("taylor", "is"),List("really", "rich", "and"), List("you"), List("are", "not"))
+
+
+
+  //Ejercicio 1
+  val ejer1 =
+    for {
+      word <- lista
+    } yield word.length
+
+  assert(ejer1 == List(2, 6, 2,6, 4,3,3,3,3))
+
+  //Ejercicio 2
+  val ejer2 =
+    for {
+      word <- lista
+      if word.length % 2 != 0
+    } yield (word, word.length)
+
+  assert(ejer2 == List(("and", 3),("you", 3),("are",3),("not",3)))
+
+
+  //Ejercicio 2
+  val ejer3 =
+    for {
+      list <- listaDeListas
+      word <- list
+      if list.length > 2 && word.length % 2 != 0
+    } yield (word, word.length)
+
+  assert(ejer3 == List(("and", 3)))
 }

@@ -7,6 +7,13 @@ object Weekday extends Enumeration {
 
   //val Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo = Value
 
+//  case class WeekdayValue(val i: Int, val name: String, val laborable: Boolean, val horasQueTRabajo: Int) extends Val(i: Int, name: String) {
+//      def isLaborable = laborable
+//    }
+//
+//
+//  val Monday = WeekdayValue(1, "Lunes", true, 8)
+
   val Monday = Value("Lunes")
   val Tuesday = Value("Martes")
   val Wednesday = Value("Miercoles")
