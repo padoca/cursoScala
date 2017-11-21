@@ -86,6 +86,13 @@ object Option {
     traverse(a)(a=>a)
   }
 
-  def variance(xs: Seq[Double]): Option[Double] = ???
+  def variance(xs: Seq[Double]): Option[Double] = {
+    val m = mean(xs)
+    m match {
+      case None => None
+      case Some(media) => mean(xs.map(x => math.pow(x - media, 2)))
+    }
+    //mean(xs) flatMap(m => mean(xs.map(x => math.pow(x-m, 2))))
+  }
 
 }
