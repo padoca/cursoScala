@@ -55,7 +55,13 @@ sealed trait Stream[+A] {
   }
 
   //true si algun elemento cumple
-   def exists(f: A => Boolean): Boolean = ???
+   def exists(f: A => Boolean): Boolean = {
+     this match {
+       case Empty => false
+       case Cons(h,t) if f(h()) => true
+       case Cons(h,t) if !f(h()) => t().exists(f)
+     }
+   }
 
 }
 
