@@ -77,7 +77,12 @@ sealed trait Stream[+A] {
   }
 
   //true si algun elemento cumple
-  def exists(f: A => Boolean): Boolean = ???
+  def exists(f: A => Boolean): Boolean = {
+    this match {
+      case Cons(h, t) => f(h()) || t().exists(f)
+      case _ => false
+    }
+  }
 
   //Sesion 11
   def foldRight[B](z: => B)(f: (A, => B) => B): B = {
